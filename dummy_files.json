@@ -1,0 +1,146 @@
+[
+    {
+        "name": "법률안_001.pdf",
+        "type": "pdf",
+        "path": "C:/TestFiles/법률안_001.pdf",
+        "category": "법률안"
+    },
+    {
+        "name": "법률안_002.pdf",
+        "type": "pdf",
+        "path": "C:/TestFiles/법률안_002.pdf",
+        "category": "법률안"
+    },
+    {
+        "name": "법률안_003.pdf",
+        "type": "pdf",
+        "path": "C:/TestFiles/법률안_003.pdf",
+        "category": "법률안"
+    },
+    {
+        "name": "법률안_004.pdf",
+        "type": "pdf",
+        "path": "C:/TestFiles/법률안_004.pdf",
+        "category": "법률안"
+    },
+    {
+        "name": "법률안_005.pdf",
+        "type": "pdf",
+        "path": "C:/TestFiles/법률안_005.pdf",
+        "category": "법률안"
+    },
+    {
+        "name": "입법_001.docx",
+        "type": "docx",
+        "path": "C:/TestFiles/입법_001.docx",
+        "category": "입법"
+    },
+    {
+        "name": "입법_002.docx",
+        "type": "docx",
+        "path": "C:/TestFiles/입법_002.docx",
+        "category": "입법"
+    },
+    {
+        "name": "입법_003.docx",
+        "type": "docx",
+        "path": "C:/TestFiles/입법_003.docx",
+        "category": "입법"
+    },
+    {
+        "name": "입법_004.docx",
+        "type": "docx",
+        "path": "C:/TestFiles/입법_004.docx",
+        "category": "입법"
+    },
+    {
+        "name": "입법_005.docx",
+        "type": "docx",
+        "path": "C:/TestFiles/입법_005.docx",
+        "category": "입법"
+    },
+    {
+        "name": "보고서_001.pdf",
+        "type": "pdf",
+        "path": "C:/TestFiles/보고서_001.pdf",
+        "category": "보고서"
+    },
+    {
+        "name": "보고서_002.pdf",
+        "type": "pdf",
+        "path": "C:/TestFiles/보고서_002.pdf",
+        "category": "보고서"
+    },
+    {
+        "name": "보고서_003.pdf",
+        "type": "pdf",
+        "path": "C:/TestFiles/보고서_003.pdf",
+        "category": "보고서"
+    },
+    {
+        "name": "보고서_004.pdf",
+        "type": "pdf",
+        "path": "C:/TestFiles/보고서_004.pdf",
+        "category": "보고서"
+    },
+    {
+        "name": "보고서_005.pdf",
+        "type": "pdf",
+        "path": "C:/TestFiles/보고서_005.pdf",
+        "category": "보고서"
+    },
+    {
+        "name": "보고서_006.pdf",
+        "type": "pdf",
+        "path": "C:/TestFiles/보고서_006.pdf",
+        "category": "보고서"
+    },
+    {
+        "name": "보고서_007.pdf",
+        "type": "pdf",
+        "path": "C:/TestFiles/보고서_007.pdf",
+        "category": "보고서"
+    },
+    {
+        "name": "회의록_001.txt",
+        "type": "txt",
+        "path": "C:/TestFiles/회의록_001.txt",
+        "category": "회의록"
+    },
+    {
+        "name": "회의록_002.txt",
+        "type": "txt",
+        "path": "C:/TestFiles/회의록_002.txt",
+        "category": "회의록"
+    },
+    {
+        "name": "회의록_003.txt",
+        "type": "txt",
+        "path": "C:/TestFiles/회의록_003.txt",
+        "category": "회의록"
+    },
+    {
+        "name": "회의록_004.txt",
+        "type": "txt",
+        "path": "C:/TestFiles/회의록_004.txt",
+        "category": "회의록"
+    },
+    {
+        "name": "회의록_005.txt",
+        "type": "txt",
+        "path": "C:/TestFiles/회의록_005.txt",
+        "category": "회의록"
+    },
+    {
+        "name": "공지사항_001.txt",
+        "type": "txt",
+        "path": "C:/TestFiles/공지사항_001.txt",
+        "category": "기타"
+    },
+    {
+        "name": "공지사항_002.txt",
+        "type": "txt",
+        "path": "C:/TestFiles/공지사항_002.txt",
+        "category": "기타"
+    }
+]
