@@ -43,10 +43,10 @@ def get_categories():
     session = SessionLocal()
     try:
         query = text("""
-            SELECT DISTINCT CLASSIFICATION_RESULT AS category
+            SELECT DISTINCT CATEGORY AS category
             FROM FILES
-            WHERE CLASSIFICATION_RESULT IS NOT NULL
-            ORDER BY CLASSIFICATION_RESULT
+            WHERE CATEGORY IS NOT NULL
+            ORDER BY CATEGORY
         """)
         categories = [row["category"] for row in session.execute(query).mappings().all()]
         return {"categories": categories}
@@ -63,7 +63,7 @@ def list_files_by_category(category: str):
         query = text("""
             SELECT FILE_NAME AS file_name, FILE_DIRECTORY AS file_directory
             FROM FILES
-            WHERE CLASSIFICATION_RESULT = :category
+            WHERE CATEGORY = :category
               AND HIDE = 0
         """)
         results = session.execute(query, {"category": category}).mappings().all()
@@ -94,9 +94,9 @@ def get_files_by_category():
     session = SessionLocal()
     try:
         query = text("""
-            SELECT FILE_NAME AS file_name, FILE_DIRECTORY AS file_directory, CLASSIFICATION_RESULT AS category
+            SELECT FILE_NAME AS file_name, FILE_DIRECTORY AS file_directory, CATEGORY AS category
             FROM FILES
-            WHERE CLASSIFICATION_RESULT IS NOT NULL AND HIDE = 0
+            WHERE CATEGORY IS NOT NULL AND HIDE = 0
         """)
         results = session.execute(query).mappings().all()
 
@@ -122,7 +122,7 @@ def download_category_zip(category: str):
         query = text("""
             SELECT FILE_NAME AS file_name, FILE_DIRECTORY AS file_directory
             FROM FILES
-            WHERE CLASSIFICATION_RESULT = :category
+            WHERE CATEGORY = :category
               AND HIDE = 0
         """)
         results = session.execute(query, {"category": category}).mappings().all()
@@ -158,7 +158,7 @@ def download_all_files_by_category():
         # HIDE=0인 파일 조회
         files = session.execute(text("""
             SELECT FILE_NAME AS file_name, FILE_DIRECTORY AS file_directory,
-                   CLASSIFICATION_RESULT AS category
+                   CATEGORY AS category
             FROM FILES
             WHERE HIDE = 0
         """)).mappings().all()
@@ -205,10 +205,10 @@ def get_files_preview(limit: int = Query(5, ge=1)):
     try:
         # 전체 파일 조회
         query = text("""
-            SELECT FILE_NAME AS file_name, FILE_DIRECTORY AS file_directory, CLASSIFICATION_RESULT AS category
+            SELECT FILE_NAME AS file_name, FILE_DIRECTORY AS file_directory, CATEGORY AS category
             FROM FILES
-            WHERE CLASSIFICATION_RESULT IS NOT NULL AND HIDE = 0
-            ORDER BY CLASSIFICATION_RESULT, FILE_NAME
+            WHERE CATEGORY IS NOT NULL AND HIDE = 0
+            ORDER BY CATEGORY, FILE_NAME
         """)
         results = session.execute(query).mappings().all()
 
