@@ -61,7 +61,7 @@ def list_files_by_category(category: str):
     session = SessionLocal()
     try:
         query = text("""
-            SELECT FILE_NAME AS file_name, FILE_DIRECTORY AS file_directory
+            SELECT FILE_NAME AS file_name, FILE_PATH AS file_path
             FROM FILES
             WHERE CATEGORY = :category
               AND HIDE = 0
@@ -73,7 +73,7 @@ def list_files_by_category(category: str):
         files = [
             {
                 "file_name": row["file_name"],
-                "file_path": row["file_directory"]
+                "file_path": row["file_path"]
             }
             for row in results
         ]
@@ -94,7 +94,7 @@ def get_files_by_category():
     session = SessionLocal()
     try:
         query = text("""
-            SELECT FILE_NAME AS file_name, FILE_DIRECTORY AS file_directory, CATEGORY AS category
+            SELECT FILE_NAME AS file_name, FILE_PATH AS file_path, CATEGORY AS category
             FROM FILES
             WHERE CATEGORY IS NOT NULL AND HIDE = 0
         """)
@@ -107,7 +107,7 @@ def get_files_by_category():
                 files_by_category[cat] = []
             files_by_category[cat].append({
                 "file_name": row["file_name"],
-                "file_path": row["file_directory"]
+                "file_path": row["file_path"]
             })
         return files_by_category
     finally:
@@ -120,7 +120,7 @@ def download_category_zip(category: str):
     session = SessionLocal()
     try:
         query = text("""
-            SELECT FILE_NAME AS file_name, FILE_DIRECTORY AS file_directory
+            SELECT FILE_NAME AS file_name, FILE_PATH AS file_path
             FROM FILES
             WHERE CATEGORY = :category
               AND HIDE = 0
@@ -132,7 +132,7 @@ def download_category_zip(category: str):
         mem_zip = io.BytesIO()
         with zipfile.ZipFile(mem_zip, "w", zipfile.ZIP_DEFLATED) as zf:
             for row in results:
-                file_path = row["file_directory"]
+                file_path = row["file_path"]
                 if os.path.exists(file_path):
                     zf.write(file_path, arcname=row["file_name"])
                 else:
@@ -157,7 +157,7 @@ def download_all_files_by_category():
     try:
         # HIDE=0인 파일 조회
         files = session.execute(text("""
-            SELECT FILE_NAME AS file_name, FILE_DIRECTORY AS file_directory,
+            SELECT FILE_NAME AS file_name, FILE_PATH AS file_path,
                    CATEGORY AS category
             FROM FILES
             WHERE HIDE = 0
@@ -170,7 +170,7 @@ def download_all_files_by_category():
         added_files = 0
         with zipfile.ZipFile(mem_zip, "w", zipfile.ZIP_DEFLATED) as zf:
             for row in files:
-                file_path = row["file_directory"]
+                file_path = row["file_path"]
                 category = row["category"] or "기타"
                 if file_path and os.path.exists(file_path):
                     # 카테고리별 폴더 구조로 ZIP에 추가
@@ -205,7 +205,7 @@ def get_files_preview(limit: int = Query(5, ge=1)):
     try:
         # 전체 파일 조회
         query = text("""
-            SELECT FILE_NAME AS file_name, FILE_DIRECTORY AS file_directory, CATEGORY AS category
+            SELECT FILE_NAME AS file_name, FILE_PATH AS file_path, CATEGORY AS category
             FROM FILES
             WHERE CATEGORY IS NOT NULL AND HIDE = 0
             ORDER BY CATEGORY, FILE_NAME
@@ -224,7 +224,7 @@ def get_files_preview(limit: int = Query(5, ge=1)):
             if len(files_by_category[cat]) < limit:
                 files_by_category[cat].append({
                     "file_name": row["file_name"],
-                    "file_path": row["file_directory"]
+                    "file_path": row["file_path"]
                 })
 
         # 구조: { "법률안": { "files": [...], "total_count": 7 }, ... }
