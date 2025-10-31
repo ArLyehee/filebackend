@@ -64,7 +64,7 @@ def list_files_by_category(category: str):
             SELECT FILE_NAME AS file_name, FILE_PATH AS file_path
             FROM FILES
             WHERE CATEGORY = :category
-              AND HIDE = 0
+              AND USER_ID = 0
         """)
         results = session.execute(query, {"category": category}).mappings().all()
         if not results:
@@ -96,7 +96,7 @@ def get_files_by_category():
         query = text("""
             SELECT FILE_NAME AS file_name, FILE_PATH AS file_path, CATEGORY AS category
             FROM FILES
-            WHERE CATEGORY IS NOT NULL AND HIDE = 0
+            WHERE CATEGORY IS NOT NULL AND USER_ID = 0
         """)
         results = session.execute(query).mappings().all()
 
@@ -123,7 +123,7 @@ def download_category_zip(category: str):
             SELECT FILE_NAME AS file_name, FILE_PATH AS file_path
             FROM FILES
             WHERE CATEGORY = :category
-              AND HIDE = 0
+              AND USER_ID = 0
         """)
         results = session.execute(query, {"category": category}).mappings().all()
         if not results:
@@ -155,12 +155,12 @@ def download_category_zip(category: str):
 def download_all_files_by_category():
     session = SessionLocal()
     try:
-        # HIDE=0인 파일 조회
+        # USER_ID=0인 파일 조회
         files = session.execute(text("""
             SELECT FILE_NAME AS file_name, FILE_PATH AS file_path,
                    CATEGORY AS category
             FROM FILES
-            WHERE HIDE = 0
+            WHERE USER_ID = 0
         """)).mappings().all()
 
         if not files:
@@ -207,7 +207,7 @@ def get_files_preview(limit: int = Query(5, ge=1)):
         query = text("""
             SELECT FILE_NAME AS file_name, FILE_PATH AS file_path, CATEGORY AS category
             FROM FILES
-            WHERE CATEGORY IS NOT NULL AND HIDE = 0
+            WHERE CATEGORY IS NOT NULL AND USER_ID = 0
             ORDER BY CATEGORY, FILE_NAME
         """)
         results = session.execute(query).mappings().all()
